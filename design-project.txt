@@ -1,0 +1,76 @@
+Project : Dashboard Perpustakaan
+Fitur Utama:
+1. CRUD Data Peminjaman dan Pengembalian
+2. Laporan Transaksi
+
+Fitur Support :
+1. CRUD buku
+2. Login / Logout
+3. CRUD Data Admin/Pegawai
+
+Menu :
+- Dashboard
+- Laporan
+- Transaksi
+- Katalog Buku
+
+Tabel :
+1. Peminjaman
+2. Buku
+3. Admin
+4. Laporan
+5. Detail_peminjam
+
+anggota = id_anggota	nama_anggota	jk_anggota	no_telp_anggota	alamat_anggota	
+
+buku = 	id_buku	judul_buku	penulis_buku	penerbit_buku	tahun_penerbit	jumlah_buku kode_rak
+
+peminjaman = id_peminjaman	tanggal_pinjam	tanggal_kembali	id_buku	id_anggota id_petugas jumlah status
+
+pengembalian = id_pengembalian	tanggal_pengembalian	denda	id_buku	id_anggota id_petugas jumlah
+
+petugas = id_petugas	nama_petugas username	password jabatan_petugas	jk_petugas	no_telp_petugas	alamat_petugas	
+
+rak = kode_rak	nama_rak	lokasi_rak
+195410169
+
+# Analisa Kebutuhan Tabel Database Perpustakaan
+- Petugas
+    Menyimpan data petugas yang berperan sebagai admin untuk mengelola seluruh data, termasuk melakukan transaksi peminjaman, pengembalian, kelola anggota, kelola buku, dan lainnya. Jika ingin mengembangkan, petugas dapat memilik hak akses yang berbeda-beda.
+    # (id, username, password, nama, telp, alamat)
+
+- Anggota
+    Menyimpan data anggota perpustakaan yang mempunyai hak untuk membaca dan meminjam buku.
+    # (id, nama, jenis_kelamin, alamat, telp)
+
+- Peminjaman
+    Menyimpan data transaksi peminjaman buku terkait tanggal pinjam, tanggal kembali, anggota yang meminjam, dan petugas yang menangani.
+    # (id, tanggal_pinjam, tanggal_kembali, anggota_id, petugas_id)
+
+- Detail Peminjaman
+    Menyimpan data buku yang kita pinjam, karena setiap anggota dapat meminjam lebih dari satu buku.
+    # (peminjaman_id, buku_id)
+
+- Pengembalian
+    Menyimpan data transaksi pengembalian buku.
+    # (id, tanggal_pengembalian, denda, peminjaman_id, anggota_id, petugas_id)
+
+- Detail Pengembalian
+    Menyimpan data pengembalian buku dan sejumlah denda yang harus dibayar jika pengembalian buku telah melewati batas waktu.
+    # (pengembalian_id,	buku_id)
+
+- Buku
+    Menyimpan data buku terkait judul, tahun buku, jumlah buku, nomor isbn, pengarang, penerbit, dan informasi lokasi buku berada pada rak yang mana.
+    # (id, judul, tahun_terbit, jumlah, isbn, pengarang_id, penerbit_id, rak_kode_rak)
+
+- Pengarang
+    Menyimpan data pengarang terkait nama, alamat, dan nomor telepon.
+    # (id, nama, alamat, telp)
+
+- Penerbit
+    Menyimpan data penerbit terkait nama, alamat, dan nomor telepon.
+    # (id, nama, alamat, telp)
+    
+- Rak
+    Menyimpan data rak buku terkait kode rak dan lokasi.
+    # (kode_rak, lokasi)
